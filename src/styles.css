@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.container-standard {
+  margin: 10vh auto;
+  /* margin-bottom: 1000px; */
+  width: 90%;
+  background-color: honeydew;
+  padding-top: 5%;
+}
+
+.text-center {
+  text-align: center;
+}

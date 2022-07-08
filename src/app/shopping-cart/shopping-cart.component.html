@@ -1,0 +1,31 @@
+<div class="container-standard">
+  <div class="card">
+    <h1>IL TUO CARRELLO</h1>
+    <h3>IL TOTALE DEGLI OGGETI SELEZIONATI è : {{ amountItems }}</h3>
+    <h3>il totale è di {{ amountMoney }} €</h3>
+  </div>
+  <div class="card" *ngFor="let item of shoppingCart">
+    <div>
+      <h2>
+        {{ item.title }}
+      </h2>
+      <h3>ID : {{ item.id }}</h3>
+
+      <img src="{{ item.img }}" alt="" />
+
+      <div>Prezzo : {{ item.price }}</div>
+      <div>Totale selez: {{ item.amount }}</div>
+
+      <button class="addBtn" (click)="addSingleItemCount(item.id)">
+        ADD ITEM
+      </button>
+      <button
+        class="removeBtn"
+        (click)="removeSingleItemCount(item.id)"
+        [disabled]="item.amount === 0"
+      >
+        REMOVE
+      </button>
+    </div>
+  </div>
+</div>

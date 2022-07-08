@@ -1,0 +1,17 @@
+/* .example-spacer {
+  flex: 1 1 auto;
+} */
+
+mat-toolbar {
+  display: flex;
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+a {
+  text-decoration-color: aliceblue;
+  color: white;
+  align-items: center;
+}
