@@ -2,5 +2,33 @@
 
 <div class="container-standard text-center">
   <h2>I NOSTRI PRODOTTI</h2>
+
   <h3>BELLI</h3>
+
+  <div class="container-buttons">
+    <div>
+      <button (click)="filterForCategory('Elettronica')">Elettronica</button>
+      <button (click)="filterForCategory('Cellulari')">Cellulari</button>
+      <button (click)="filterForCategory('Laptop')">Laptop</button>
+      <button (click)="filterForCategory('SmartWatch')">SmartWatch</button>
+      <button (click)="filterForCategory('Monitor')">Monitor</button>
+      <button (click)="filterForCategory('Gaming')">Gaming</button>
+    </div>
+    <div>
+      <button (click)="showAll()">Mostra tutto</button>
+    </div>
+  </div>
+  <div class="card" *ngFor="let item of store">
+    <h2>
+      {{ item.title }}
+    </h2>
+    <h3>ID : {{ item.id }}</h3>
+
+    <img src="{{ item.img }}" alt="" />
+
+    <div>Prezzo : {{ item.price }}</div>
+    <div>Totale selez: {{ item.amount }}</div>
+
+    <button class="addBtn" (click)="pushOnCart(item.id)">ADD ITEM</button>
+  </div>
 </div>
