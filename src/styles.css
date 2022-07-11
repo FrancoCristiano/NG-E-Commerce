@@ -20,3 +20,12 @@ body {
 .text-center {
   text-align: center;
 }
+
+.my-5 {
+  margin-bottom: 5vh;
+  margin-top: 5vh;
+}
+
+.mat-form-field {
+  width: 55%;
+}

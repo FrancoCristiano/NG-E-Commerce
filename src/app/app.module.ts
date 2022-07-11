@@ -18,6 +18,10 @@ import { FooterComponent } from './footer/footer.component';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
+import { LoginComponent } from './login/login.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,8 @@ import { MatListModule } from '@angular/material/list';
     HomeComponent,
     NavbarComponent,
     FooterComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +48,8 @@ import { MatListModule } from '@angular/material/list';
     MatBadgeModule,
     MatGridListModule,
     MatListModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
