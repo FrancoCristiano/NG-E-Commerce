@@ -1,13 +1,12 @@
 .card {
-  margin: 3vh auto;
+  margin: 6vh auto;
 
   height: inherit;
-  width: 50%;
-  background-color: #3f51b5;
-
-  color: white;
-  /* border: 1px solid; */
-  padding: 10px;
+  width: 55%;
+  background-color: lightcyan;
+  color: #3f51b5;
+  border: solid 1px #3f51b5;
+  padding: 0px;
   /* box-shadow: 5px 10px #888888; */
   box-shadow: 5px 10px 18px #888888;
 }
@@ -15,6 +14,8 @@
 .card h2,
 div {
   text-align: center;
+  font-size: x-large;
+  margin-top: 0.5vh;
 }
 
 .card button {
@@ -24,7 +25,7 @@ div {
   border-radius: 10%;
 }
 .card img {
-  height: 25vh;
+  height: 35vh;
   margin: 1vh;
 }
 .addBtn {
@@ -39,4 +40,20 @@ div {
 [disabled] {
   background-color: grey;
   color: red;
+}
+
+.container-card-shoppingList {
+  background-color: lightcyan;
+  color: #3f51b5;
+  border: solid 1px #3f51b5;
+}
+
+.container-card-shoppingList mat-list-item {
+  color: #3f51b5;
+}
+
+.sticky-top {
+  position: sticky;
+  top: 15vh;
+  z-index: 1;
 }

@@ -16,6 +16,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
 import { FooterComponent } from './footer/footer.component';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatSidenavModule,
     MatMenuModule,
     MatBadgeModule,
+    MatGridListModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
