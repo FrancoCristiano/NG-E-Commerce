@@ -14,10 +14,13 @@ export class ShoppingCartComponent implements OnInit {
   constructor(private prodService: ProdServService) {
     this.shoppingCart = prodService.cart;
     this.amountItems = this.prodService.totalItemsX;
-    this.amountMoney = this.prodService.cartTotalX;
+    this.amountMoney = this.prodService.cartTotalX.toFixed(2);
   }
 
   ngOnInit(): void {
+    this.prodService.newCart.subscribe(() => {
+      this.shoppingCart = this.prodService.cart;
+    });
     this.prodService.newAmountItems.subscribe(() => {
       this.amountItems = this.prodService.totalItemsX;
     });
