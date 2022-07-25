@@ -41,7 +41,12 @@
       <button mat-menu-item routerLink="/ShoppingCart">Carrello</button>
       <hr />
       <button mat-menu-item routerLink="/Login">LOGIN</button>
-      <button mat-menu-item routerLink="/Login" (click)="logout()">
+      <button
+        mat-menu-item
+        routerLink="/Login"
+        [disabled]="!userIsLogged"
+        (click)="logout()"
+      >
         LOGOUT
       </button>
     </mat-menu>
