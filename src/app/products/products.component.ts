@@ -16,6 +16,7 @@ export class ProductsComponent implements OnInit {
   singleUser2X: any | undefined;
 
   finalUserX: User | undefined;
+  isLogged: boolean = false;
 
   constructor(
     private storeService: StoreItemsService,
@@ -26,10 +27,12 @@ export class ProductsComponent implements OnInit {
     this.storeService.newStore.subscribe(() => {
       this.store = this.storeService.getStoreList();
     });
-    // if (localStorage.getItem('userLogged')) {
-    //   this.singleUser2X = localStorage.getItem('userLogged');
-    //   this.finalUserX = JSON.parse(this.singleUser2X);
-    // }
+
+    if (localStorage.getItem('userLogged')) {
+      this.isLogged = true;
+    } else {
+      this.isLogged = false;
+    }
     // this.userService.singleUserStream.subscribe(() => {
     //   this.finalUserX = this.userService.singleUserLogged;
     // });

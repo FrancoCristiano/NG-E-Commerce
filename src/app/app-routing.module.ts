@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuardServiceService } from './auth-guard-service.service';
 import { HomeComponent } from './home/home.component';
 import { ItemSingleByIdComponent } from './item-single-by-id/item-single-by-id.component';
 import { LoginComponent } from './login/login.component';
@@ -14,10 +15,18 @@ const routes: Routes = [
   //Qui specifico le rotte, sono oggetti JS
   { path: '', component: HomeComponent },
   { path: 'products', component: ProductsComponent },
-  { path: 'ShoppingCart', component: ShoppingCartComponent },
+  {
+    path: 'ShoppingCart',
+    canActivate: [AuthGuardServiceService],
+    component: ShoppingCartComponent,
+  },
   { path: 'Login', component: LoginComponent },
   { path: 'registrati', component: RegisterComponent },
-  { path: 'userPage', component: UserPageComponent },
+  {
+    path: 'userPage',
+    canActivate: [AuthGuardServiceService],
+    component: UserPageComponent,
+  },
   {
     path: 'productDetails',
     component: ProductDetailsComponent,

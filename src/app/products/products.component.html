@@ -34,7 +34,11 @@
         Vedi Dettaglio
       </button>
     </div>
-    <button class="addBtn" (click)="pushOnSingleUserCart(item.id)">
+    <button
+      class="addBtn"
+      [disabled]="!isLogged"
+      (click)="pushOnSingleUserCart(item.id)"
+    >
       ADD ITEM SINGOLO CART USER
     </button>
   </div>

@@ -21,11 +21,13 @@ export class ShoppingCartComponent implements OnInit {
 
   constructor(
     private prodService: ProdServService,
-    private storeServ: StoreItemsService,
+    private storeService: StoreItemsService,
     private userService: UsersService,
     private shopService: ShoppingServiceDBService
   ) {
     if (localStorage.getItem('userLogged')) {
+      this.storeService.fetchData();
+
       this.newSingleShoppingCart = this.shopService.cart;
       this.userService.fetchSingleUser();
       // this.userService.newShoppingCart.subscribe(() => {
