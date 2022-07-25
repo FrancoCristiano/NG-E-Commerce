@@ -1,0 +1,70 @@
+<div class="container-standard text-center">
+  <h2>PAGINA UTENTE</h2>
+
+  <div *ngIf="userIsLogged2; else noLogged">
+    <div class="form-container">
+      <h3>Ciao {{ finalUser?.username }} , MODIFICA I TUOI DATI :</h3>
+      <form [formGroup]="updateForm">
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label> username </mat-label>
+            <input matInput formControlName="username" />
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-hint> Inserisci il tuo nuovo username </mat-hint>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label> email </mat-label>
+            <input type="email" matInput formControlName="email" />
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-hint> Inserisci la tua nuova mail </mat-hint>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label> password </mat-label>
+            <input matInput formControlName="password" />
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-hint> Inserisci la tua nuova password </mat-hint>
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label> domanda Segreta </mat-label>
+            <mat-select formControlName="domandaSegreta">
+              <mat-option *ngFor="let item of domande" [value]="item">{{
+                item
+              }}</mat-option>
+            </mat-select>
+            <mat-hint> Inserisci la tua nuova domandaSegreta </mat-hint>
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label> risposta Segreta</mat-label>
+            <input matInput formControlName="rispostaSegreta" />
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-hint> Inserisci la tua nuova risposta Segreta </mat-hint>
+          </mat-form-field>
+        </p>
+
+        <button
+          [disabled]="!updateForm.valid"
+          mat-raised-button
+          color="primary"
+          routerLink="/registrati"
+          (click)="onRegister(finalUser.id)"
+        >
+          > > MODIFICA SUBITO!
+        </button>
+      </form>
+    </div>
+  </div>
+  <ng-template #noLogged>
+    <h3>NON SEI LOGGATO !</h3>
+    <button mat-raised-button color="primary" routerLink="/Login">LOGIN</button>
+  </ng-template>
+</div>

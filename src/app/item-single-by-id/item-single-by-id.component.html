@@ -1,0 +1,18 @@
+<p>item-single-by-id works!</p>
+<h2>titolo: {{ singleItem.title }}</h2>
+
+<div class="card">
+  <h2>
+    {{ singleItem.title }}
+  </h2>
+  <h3>ID : {{ singleItem.id }}</h3>
+
+  <img src="{{ singleItem.img }}" alt="" />
+
+  <div>Prezzo : {{ singleItem.price }}</div>
+  <div>Totale selez: {{ singleItem.amount }}</div>
+  <div>
+    <button [routerLink]="['/products']">TORNA allo Store</button>
+  </div>
+  <!-- <button class="addBtn" (click)="pushOnCart(singleItem.id)">ADD ITEM</button> -->
+</div>

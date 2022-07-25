@@ -2,24 +2,58 @@
   <h2>REGISTRATI SUBITO</h2>
 
   <div class="form-container">
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>Username </mat-label>
-        <input matInput />
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        <mat-hint> Inserisci il tuo username </mat-hint>
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label> Password</mat-label>
-        <input matInput />
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-      </mat-form-field>
-    </p>
+    <form [formGroup]="registerForm">
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Username </mat-label>
+          <input matInput formControlName="username" />
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-hint> Inserisci il tuo username </mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label> Email</mat-label>
+          <input type="email" matInput formControlName="email" />
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label> Password</mat-label>
+          <input matInput formControlName="password" />
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+      </p>
 
-    <button mat-raised-button color="primary" routerLink="/registrati">
-      REGISTRATI SUBITO!
-    </button>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label> DOMANDA SEGRETA</mat-label>
+          <mat-select formControlName="domandaSegreta">
+            <mat-option *ngFor="let item of domande" [value]="item">{{
+              item
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label> Risposta Segreta</mat-label>
+          <input matInput formControlName="rispostaSegreta" />
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+      </p>
+
+      <button
+        [disabled]="!registerForm.valid"
+        mat-raised-button
+        color="primary"
+        routerLink="/registrati"
+        (click)="onRegister()"
+      >
+        > > REGISTRATI SUBITO!
+      </button>
+    </form>
   </div>
 </div>

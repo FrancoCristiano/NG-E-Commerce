@@ -2,12 +2,20 @@
   <mat-toolbar color="primary">
     <a routerLink="/"> E-MERCATO </a>
     <span class="example-spacer"></span>
+    <div *ngIf="userIsLogged; else noLogged">
+      <!-- <button mat-icon routerLink="/Login"> -->
+      CIAO {{ finalUser?.username }}
+      <!-- </button> -->
+    </div>
 
+    <ng-template #noLogged>
+      <button mat-icon-button routerLink="/Login">LOGIN</button>
+    </ng-template>
     <button
       mat-icon-button
+      routerLink="/userPage"
       class="example-icon favorite-icon"
       aria-label="Example icon-button with heart icon"
-      routerLink="/Login"
     >
       <mat-icon>person</mat-icon>
     </button>
@@ -18,7 +26,7 @@
       aria-label="Example icon-button with heart icon"
       routerLink="/ShoppingCart"
     >
-      <mat-icon matBadge="{{ amountItems }}" matBadgeColor="warn"
+      <mat-icon matBadge="{{ +amountItems }}" matBadgeColor="warn"
         >shopping_cart</mat-icon
       >
       <!-- {{ amountItems }} -->
@@ -31,6 +39,11 @@
       <button mat-menu-item routerLink="/">Home</button>
       <button mat-menu-item routerLink="/products">Tutti i prodotti</button>
       <button mat-menu-item routerLink="/ShoppingCart">Carrello</button>
+      <hr />
+      <button mat-menu-item routerLink="/Login">LOGIN</button>
+      <button mat-menu-item routerLink="/Login" (click)="logout()">
+        LOGOUT
+      </button>
     </mat-menu>
   </mat-toolbar>
 </nav>

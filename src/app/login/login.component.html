@@ -1,28 +1,58 @@
 <div class="container-standard text-center">
-  <h2>ACCEDI SUBITO</h2>
+  <div *ngIf="alreadyLogged === false; else notLogged" class="form-container">
+    <h2>ACCEDI SUBITO</h2>
+    <form [formGroup]="loginForm">
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Username </mat-label>
+          <input matInput formControlName="username" />
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-hint> Inserisci il tuo username </mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label> Password</mat-label>
+          <input matInput formControlName="password" />
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+      </p>
+      <div class="my-5">
+        <button
+          [disabled]="!loginForm.valid"
+          mat-raised-button
+          color="accent"
+          type="submit"
+          (click)="login()"
+        >
+          <!-- routerLink="/" -->
 
-  <div class="form-container">
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>Username </mat-label>
-        <input matInput />
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        <mat-hint> Inserisci il tuo username </mat-hint>
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label> Password</mat-label>
-        <input matInput />
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-      </mat-form-field>
-    </p>
-    <div class="my-5">
-      <button mat-raised-button color="accent">ENTRA!</button>
-    </div>
-    <h3>NON SEI ANCORA REGISTRATO??</h3>
-    <button mat-raised-button color="primary" routerLink="/registrati">
-      REGISTRATI SUBITO!
-    </button>
+          ENTRA!
+        </button>
+      </div>
+      <h3>NON SEI ANCORA REGISTRATO??</h3>
+      <button mat-raised-button color="primary" routerLink="/registrati">
+        REGISTRATI SUBITO!
+      </button>
+    </form>
   </div>
+  <ng-template #notLogged>
+    <div class="notLogged">
+      <h2>SEI GIA LOGGATO</h2>
+    </div>
+    <h2>Vai allo shop!!</h2>
+    <button
+      mat-icon-button
+      routerLink="/products"
+      color="primary"
+      class="example-icon favorite-icon iconBag"
+      aria-label="Example icon-button with heart icon"
+    >
+      <mat-icon class="bag">shopping_bag</mat-icon>
+    </button>
+  </ng-template>
+
+  <!-- <div *ngFor="let item of usersListFull">
+    <h2>{{ item.username }}</h2>
+  </div> -->
 </div>

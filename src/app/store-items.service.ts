@@ -1,68 +1,57 @@
+import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { ProdServService } from './prod-serv.service';
+import { Item } from './shared/item.model';
+import { ShoppingServiceDBService } from './shopping-service-db.service';
+import { UsersService } from './users.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StoreItemsService {
-  store: any[] = [
-    {
-      id: 'rec1JZlfCIBOPdcT2',
-      title: 'Samsung Galaxy S8',
-      price: '399.99',
-      category: 'Laptop',
-      img: 'https://dl.airtable.com/.attachments/64b266ad865098befbda3c3577a773c9/24497852/yedjpkwxljtb75t3tezl.png',
-      amount: 0,
-    },
-    {
-      id: 'recB6qcHPxb62YJ75',
-      title: 'google pixel',
-      price: '499.99',
-      category: 'Cellulari',
-      img: 'https://dl.airtable.com/.attachments/91c88ae8c1580e2b762ecb3f73ed1eed/a633139a/phone-1_gvesln.png',
-      amount: 0,
-    },
-    {
-      id: 'recdRxBsE14Rr2VuJ',
-      title: 'Xiaomi Redmi Note 2',
-      price: '699.99',
-      category: 'Cellulari',
+  url = 'https://62d00b811cc14f8c08832d2a.mockapi.io/E-mercato/Store';
 
-      img: 'https://dl.airtable.com/.attachments/bae9208dc34f35128749ecda5b999e84/337c285d/phone-3_h2s6fo.png',
-      amount: 0,
-    },
-    {
-      id: 'recwTo160XST3PIoW',
-      title: 'Samsung Galaxy S7',
-      price: '599.99 ',
-      category: 'Cellulari',
+  urlUsers = 'https://62d00b811cc14f8c08832d2a.mockapi.io/E-mercato/Users';
+  storeX: Item[] = [];
+  newStore = new EventEmitter<Item[]>();
+  storeFiltered: Item[] = [];
 
-      img: 'https://dl.airtable.com/.attachments/91ee456448cef47deec553a2ea3fa8ad/b08bec68/phone-2_ohtt5s.png',
-      amount: 0,
-    },
-    {
-      id: 'rec1JZlfCIBgsdgdsOPdcT2',
-      title: 'Samsung Galaxy S8',
-      price: '399.99',
-      category: 'Monitor',
-      img: 'https://dl.airtable.com/.attachments/64b266ad865098befbda3c3577a773c9/24497852/yedjpkwxljtb75t3tezl.png',
-      amount: 0,
-    },
-    {
-      id: 'rec1JZlfCIBOsdaPdcT2',
-      title: 'Samsung Galaxy S8',
-      price: '399.99',
-      category: 'Laptop',
-      img: 'https://dl.airtable.com/.attachments/64b266ad865098befbda3c3577a773c9/24497852/yedjpkwxljtb75t3tezl.png',
-      amount: 0,
-    },
-  ];
-  newStore = new EventEmitter<any>();
-  storeFiltered: any[] = [];
-  constructor(private cartService: ProdServService) {}
+  singleUser2X: any;
+  finalUserX: any;
+  foundInTheCart: boolean | undefined;
 
+  constructor(
+    private cartService: ProdServService,
+    private http: HttpClient,
+    private userServ: UsersService,
+    private shopService: ShoppingServiceDBService
+  ) {
+    if (localStorage.getItem('userLogged')) {
+      this.singleUser2X = localStorage.getItem('userLogged');
+      this.finalUserX = JSON.parse(this.singleUser2X);
+
+      this.userServ.fetchSingleUser();
+      this.userServ.singleUserStream.subscribe(() => {
+        this.finalUserX = this.userServ.singleUserFetch;
+      });
+    }
+  }
+
+  fetchData() {
+    this.http.get(this.url, { observe: 'response' }).subscribe((response) => {
+      const data: any = response.body;
+      this.storeX = data;
+      this.newStore.emit(data);
+    });
+  }
+
+  getStoreList() {
+    return this.storeX;
+  }
+
+  //Metodo per pushare nel carrello GENERICO
   pushOnCart(id: string) {
-    this.store.find((item) => {
+    this.storeX.find((item) => {
       if (item.id === id) {
         if (this.cartService.cart.includes(item)) {
           this.cartService.addSingleItem(item.id);
@@ -70,25 +59,120 @@ export class StoreItemsService {
           this.cartService.cart.push(item);
           this.cartService.addSingleItem(item.id);
         }
-        console.log('service log ');
       }
     });
   }
 
+  pushOnSingleUserCart(id: string) {
+    const itemFound = this.storeX?.find((item) => {
+      return item.id === id;
+    });
+
+    console.log(itemFound);
+    if (itemFound) {
+      const itemInTheCart = this.finalUserX.shoppingCart.find((itemZ: any) => {
+        return itemZ.id === itemFound.id;
+      });
+      console.log(itemInTheCart);
+
+      //RIDONDANTE E NON NECESSARIO.
+      if (itemInTheCart) {
+        this.foundInTheCart = true;
+      } else {
+        this.foundInTheCart = false;
+      }
+      // }
+      console.log(this.foundInTheCart);
+
+      if (this.foundInTheCart === true) {
+        this.shopService.addSingleItem(itemFound.id);
+
+        console.log('NON PUSHO');
+      } else {
+        console.log('STO PUSHANDO');
+        this.finalUserX.shoppingCart.push(itemFound);
+
+        this.shopService.addSingleItem(itemFound.id);
+      }
+    }
+  }
+  // }
+
+  editSingleAmountItem(id: string) {
+    this.storeX?.find((item) => {
+      if (item.id === id) {
+        if (this.finalUserX.shoppingCart.includes(item)) {
+          this.shopService.addSingleItem(item.id);
+
+          // this.userServ.fetchUpdateSingleData2(
+          //   this.finalUserX.id,
+          //   this.finalUserX
+          // );
+        } else {
+          this.finalUserX.shoppingCart.push(item);
+
+          this.shopService.addSingleItem(item.id);
+          // this.userServ.fetchUpdateSingleData2(
+          //   this.finalUserX.id,
+          //   this.finalUserX
+          // );
+        }
+      }
+    });
+  }
+
+  // pushOnSingleUserCart(id: string) {
+  //   this.storeX.find((item) => {
+  //     if (item.id === id) {
+  //       // if (this.finalUserX.shoppingCart.includes(item))
+  //       // {
+  //       this.cartService.addSingleItem(item.id);
+  //       // this.finalUserX?.shoppingCart.push(item);
+  //       item.amount += 1;
+  //       this.userServ.fetchUpdateSingleData2(
+  //         this.finalUserX.id,
+  //         this.finalUserX
+  //       );
+  //     } else {
+  //       // this.cartService.cart.push(item);
+  //       this.cartService.addSingleItem(item.id);
+  //       this.finalUserX?.shoppingCart.push(item);
+  //       this.userServ.fetchUpdateSingleData2(
+  //         this.finalUserX.id,
+  //         this.finalUserX
+  //       );
+  //     }
+  //   });
+  // }
+
+  showCart() {
+    return this.finalUserX.shoppingCart;
+  }
+  //metodi per filtrare gli elementi dello store!
   filterForCategory(category: string) {
     if (category === 'Mostra tutto') {
-      this.storeFiltered = this.store;
+      this.storeFiltered = this.storeX;
     }
-    this.storeFiltered = this.store.filter(
+
+    this.storeFiltered = this.storeX.filter(
       (item) => item.category === category
     );
 
     this.newStore.emit(this.storeFiltered);
-    console.log(category);
   }
 
   showAll() {
-    this.storeFiltered = this.store;
+    this.storeFiltered = this.storeX;
     this.newStore.emit(this.storeFiltered);
+  }
+
+  setItemById(id: string = '1') {
+    const item = this.storeX.find((item) => item.id === id);
+    this.userServ.setLocalStorage('singleproduct', item);
+    console.log(item);
+  }
+
+  getItemById() {
+    return this.userServ.getLocalStorage('singleproduct');
   }
 }

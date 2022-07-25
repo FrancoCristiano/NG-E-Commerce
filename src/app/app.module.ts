@@ -7,7 +7,9 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { RegisterComponent } from './register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -21,7 +23,16 @@ import { MatListModule } from '@angular/material/list';
 import { LoginComponent } from './login/login.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { RegisterComponent } from './register/register.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+
+import { HttpClientModule } from '@angular/common/http';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { UserPageComponent } from './user-page/user-page.component';
+import { AlertComponent } from './alert/alert.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { ItemSingleByIdComponent } from './item-single-by-id/item-single-by-id.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -33,8 +44,14 @@ import { RegisterComponent } from './register/register.component';
     FooterComponent,
     LoginComponent,
     RegisterComponent,
+    UserPageComponent,
+    AlertComponent,
+    ProductDetailsComponent,
+    ItemSingleByIdComponent,
+    PageNotFoundComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -50,6 +67,9 @@ import { RegisterComponent } from './register/register.component';
     MatListModule,
     MatFormFieldModule,
     MatInputModule,
+    ReactiveFormsModule,
+    MatRadioModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

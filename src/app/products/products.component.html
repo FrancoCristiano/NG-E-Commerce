@@ -1,5 +1,3 @@
-<p>products works!</p>
-
 <div class="container-standard text-center">
   <h2>I NOSTRI PRODOTTI</h2>
 
@@ -28,7 +26,17 @@
 
     <div>Prezzo : {{ item.price }}</div>
     <div>Totale selez: {{ item.amount }}</div>
-
-    <button class="addBtn" (click)="pushOnCart(item.id)">ADD ITEM</button>
+    <div>
+      <button
+        (click)="onSetSingleItem(item.id)"
+        [routerLink]="['/productDetails', item.id]"
+      >
+        Vedi Dettaglio
+      </button>
+    </div>
+    <!-- <button class="addBtn" (click)="pushOnCart(item.id)">ADD ITEM</button> -->
+    <button class="addBtn" (click)="pushOnSingleUserCart(item.id)">
+      ADD ITEM SINGOLO CART USER
+    </button>
   </div>
 </div>
