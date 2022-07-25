@@ -224,6 +224,8 @@ export class UsersService {
       this.singleUserStream.emit(response);
       this.setLocalStorage('userLogged', this.singleUser);
       this.router.navigate(['ShoppingCart']);
+      console.log('finito');
+      console.log(response);
     });
   }
 }

@@ -26,13 +26,13 @@ export class ProductsComponent implements OnInit {
     this.storeService.newStore.subscribe(() => {
       this.store = this.storeService.getStoreList();
     });
-    if (localStorage.getItem('userLogged')) {
-      this.singleUser2X = localStorage.getItem('userLogged');
-      this.finalUserX = JSON.parse(this.singleUser2X);
-    }
-    this.userService.singleUserStream.subscribe(() => {
-      this.finalUserX = this.userService.singleUserLogged;
-    });
+    // if (localStorage.getItem('userLogged')) {
+    //   this.singleUser2X = localStorage.getItem('userLogged');
+    //   this.finalUserX = JSON.parse(this.singleUser2X);
+    // }
+    // this.userService.singleUserStream.subscribe(() => {
+    //   this.finalUserX = this.userService.singleUserLogged;
+    // });
   }
 
   ngOnInit(): void {
@@ -40,9 +40,9 @@ export class ProductsComponent implements OnInit {
     // console.log(this.finalUserX);
   }
 
-  pushOnCart(id: string) {
-    this.storeService.pushOnCart(id);
-  }
+  // pushOnCart(id: string) {
+  //   this.storeService.pushOnCart(id);
+  // }
 
   pushOnSingleUserCart(idItem: string) {
     this.storeService.pushOnSingleUserCart(idItem);

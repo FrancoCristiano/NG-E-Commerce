@@ -26,16 +26,17 @@ export class ShoppingCartComponent implements OnInit {
     private shopService: ShoppingServiceDBService
   ) {
     if (localStorage.getItem('userLogged')) {
+      this.newSingleShoppingCart = this.shopService.cart;
       this.userService.fetchSingleUser();
-      this.userService.newShoppingCart.subscribe(() => {
-        this.newSingleShoppingCart =
-          this.userService.singleUserFetchShoppingCart;
-        console.log(this.newSingleShoppingCart);
-      });
+      // this.userService.newShoppingCart.subscribe(() => {
+      //   this.newSingleShoppingCart =
+      //     this.userService.singleUserFetchShoppingCart;
+      //   console.log(this.newSingleShoppingCart);
+      // });
 
       //carrello aggiornato del singolo user dal DB
-      this.shoppingCart2 = storeServ.showCart();
-      console.log(this.shoppingCart2);
+      // this.shoppingCart2 = storeServ.showCart();
+      // console.log(this.shoppingCart2);
 
       if (localStorage.getItem('totalItemsX')) {
         this.amount2 = localStorage.getItem('totalItemsX');
@@ -52,14 +53,15 @@ export class ShoppingCartComponent implements OnInit {
       this.shopService.newAmountMoney.subscribe(() => {
         this.amountMoney = this.shopService.cartTotalX;
       });
-      this.shoppingCart = shopService.cart;
+      // this.newSingleShoppingCart = shopService.cart;
       // this.amountItems = this.shopService.totalItemsX;
       // this.amountMoney = this.shopService.cartTotalX.toFixed(2);
     }
   }
   ngOnInit(): void {
     this.shopService.newCart.subscribe(() => {
-      this.shoppingCart = this.shopService.cart;
+      this.newSingleShoppingCart = this.shopService.cart;
+      console.log(this.newSingleShoppingCart);
     });
 
     this.shopService.newAmountMoney.subscribe(() => {

@@ -101,7 +101,7 @@ export class ShoppingServiceDBService {
       //LOGICA PER TENERE IL VALORE DEL TOTALE MONEY NELLO STORAGE
       let pippo2 = localStorage.getItem('totalMoneyX');
       if (pippo2) {
-        this.cartTotalX = parseInt(pippo2);
+        this.cartTotalX = parseFloat(pippo2);
       }
       this.cartTotalX += +itemSingolo.price;
       this.newAmountItems.emit(this.totalItemsX);
@@ -136,7 +136,7 @@ export class ShoppingServiceDBService {
       //LOGICA PER TENERE IL VALORE DEL TOTALE MONEY NELLO STORAGE
       let pippo2 = localStorage.getItem('totalMoneyX');
       if (pippo2) {
-        this.cartTotalX = parseInt(pippo2);
+        this.cartTotalX = parseFloat(pippo2);
       }
       this.cartTotalX -= +itemSingolo.price;
       this.newAmountItems.emit(this.totalItemsX);
