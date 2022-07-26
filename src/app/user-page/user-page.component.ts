@@ -27,6 +27,8 @@ export class UserPageComponent implements OnInit {
   rispostaSegretaX: string = '';
   idX: string = '';
 
+  viewValue: string = 'userInfo';
+
   constructor(private userService: UsersService) {
     if (localStorage.getItem('userLogged')) {
       this.singleUser2 = localStorage.getItem('userLogged');
@@ -96,5 +98,9 @@ export class UserPageComponent implements OnInit {
     );
 
     this.onUpdate(id, newUser);
+  }
+
+  changeView(string: string) {
+    this.viewValue = string;
   }
 }

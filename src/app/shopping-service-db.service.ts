@@ -37,6 +37,9 @@ export class ShoppingServiceDBService {
   newCart = new EventEmitter<Item[]>();
 
   constructor(private userService: UsersService) {
+    // this.userService.fetchSingleUser();
+    this.cart = this.userService.singleUserFetchShoppingCart;
+
     if (localStorage.getItem('userLogged')) {
       this.singleUser2X = localStorage.getItem('userLogged');
       this.finalUserX = JSON.parse(this.singleUser2X);

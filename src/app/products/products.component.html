@@ -28,6 +28,8 @@
     <div>Totale selez: {{ item.amount }}</div>
     <div>
       <button
+        mat-raised-button
+        color="primary"
         (click)="onSetSingleItem(item.id)"
         [routerLink]="['/productDetails', item.id]"
       >
@@ -35,11 +37,22 @@
       </button>
     </div>
     <button
-      class="addBtn"
       [disabled]="!isLogged"
+      mat-raised-button
+      color="accent"
       (click)="pushOnSingleUserCart(item.id)"
     >
       ADD ITEM SINGOLO CART USER
     </button>
+
+    <!-- <button
+    [disabled]="!updateForm.valid"
+    mat-raised-button
+    color="primary"
+    routerLink="/registrati"
+    (click)="onRegister(finalUser.id)"
+  >
+    > > MODIFICA SUBITO!
+  </button> -->
   </div>
 </div>

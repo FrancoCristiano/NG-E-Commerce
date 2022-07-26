@@ -10,6 +10,7 @@ import { ProductsComponent } from './products/products.component';
 import { RegisterComponent } from './register/register.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { UserPageComponent } from './user-page/user-page.component';
+import { WorkWithUsComponent } from './work-with-us/work-with-us.component';
 
 const routes: Routes = [
   //Qui specifico le rotte, sono oggetti JS
@@ -32,6 +33,12 @@ const routes: Routes = [
     component: ProductDetailsComponent,
     children: [{ path: ':id', component: ItemSingleByIdComponent }],
   },
+  {
+    path: 'WorkWithUs',
+    canActivate: [AuthGuardServiceService],
+    component: WorkWithUsComponent,
+  },
+
   { path: 'not-found', component: PageNotFoundComponent },
   { path: '**', redirectTo: 'not-found' },
 ];

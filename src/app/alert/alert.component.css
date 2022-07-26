@@ -1,6 +1,7 @@
 .container.alert-container {
-  height: 10vh;
-  margin-top: 14vh;
+  height: 4vh;
+  margin-top: 10vh;
+  margin-bottom: 3vh;
 }
 
 .alert {

@@ -1,9 +1,28 @@
 <div class="container-standard text-center">
   <h2>PAGINA UTENTE</h2>
 
-  <div *ngIf="userIsLogged2; else noLogged">
-    <div class="form-container">
-      <h3>Ciao {{ finalUser?.username }} , MODIFICA I TUOI DATI :</h3>
+  <div class="buttonDiv">
+    <button mat-raised-button color="accent" (click)="changeView('userInfo')">
+      Le tue Info
+    </button>
+    <button
+      mat-raised-button
+      color="accent"
+      (click)="changeView('userPurchases')"
+    >
+      I tuoi Acquisti
+    </button>
+    <button
+      mat-raised-button
+      color="accent"
+      (click)="changeView('userMessages')"
+    >
+      I tuoi Messaggi
+    </button>
+  </div>
+  <div>
+    <div class="form-container" *ngIf="viewValue === 'userInfo'">
+      <h2>Ciao {{ finalUser?.username }} , MODIFICA I TUOI DATI :</h2>
       <form [formGroup]="updateForm">
         <p>
           <mat-form-field appearance="outline">
@@ -62,9 +81,17 @@
         </button>
       </form>
     </div>
+
+    <div class="form-container" *ngIf="viewValue === 'userPurchases'">
+      <h2>I TUOI ACQUISTI</h2>
+    </div>
+
+    <div class="form-container" *ngIf="viewValue === 'userMessages'">
+      <h2>I TUOI MESSAGGI</h2>
+    </div>
   </div>
-  <ng-template #noLogged>
+  <!-- <ng-template #noLogged>
     <h3>NON SEI LOGGATO !</h3>
     <button mat-raised-button color="primary" routerLink="/Login">LOGIN</button>
-  </ng-template>
+  </ng-template> -->
 </div>

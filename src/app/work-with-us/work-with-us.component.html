@@ -1,0 +1,61 @@
+<div class="container-standard">
+  <div class="text-center">
+    <h2>Lavora con noi</h2>
+  </div>
+
+  <div class="container-half">
+    <div class="imgFormAsk">
+      <img
+        src="../../assets/img/freelance-2906725_960_720.png"
+        alt="img man money"
+      />
+    </div>
+    <div class="reviewerForm">
+      <form [formGroup]="reviewerForm">
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Username </mat-label>
+            <input ng-disabled="true" matInput formControlName="username" />
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <!-- <mat-hint> Inserisci il tuo username </mat-hint> -->
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label> email</mat-label>
+            <input matInput formControlName="email" />
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label> Scrivici </mat-label>
+            <textarea
+              matInput
+              formControlName="reason"
+              cols="20"
+              rows="10"
+              placeholder="scrivi le tue motivazioni"
+            ></textarea>
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-hint> Perchè vuoi lavorare con noi?</mat-hint>
+          </mat-form-field>
+        </p>
+        <div class="my-5 text-center">
+          <button
+            [disabled]="!reviewerForm.valid"
+            mat-raised-button
+            color="accent"
+            type="submit"
+            (click)="sendRequest()"
+          >
+            <!-- (click)="" -->
+            <!-- routerLink="/" -->
+
+            CANDIDATI
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

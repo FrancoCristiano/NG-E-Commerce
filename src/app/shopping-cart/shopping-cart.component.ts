@@ -25,41 +25,44 @@ export class ShoppingCartComponent implements OnInit {
     private userService: UsersService,
     private shopService: ShoppingServiceDBService
   ) {
-    if (localStorage.getItem('userLogged')) {
-      this.storeService.fetchData();
+    // if (localStorage.getItem('userLogged')) {
+    // this.storeService.fetchData();
+    this.userService.fetchSingleUser();
 
-      this.newSingleShoppingCart = this.shopService.cart;
-      this.userService.fetchSingleUser();
-      // this.userService.newShoppingCart.subscribe(() => {
-      //   this.newSingleShoppingCart =
-      //     this.userService.singleUserFetchShoppingCart;
-      //   console.log(this.newSingleShoppingCart);
-      // });
+    // this.shopService.stampaCarrello();
+    this.newSingleShoppingCart = this.shopService.cart;
+    console.log(this.shopService.cart);
 
-      //carrello aggiornato del singolo user dal DB
-      // this.shoppingCart2 = storeServ.showCart();
-      // console.log(this.shoppingCart2);
+    // this.userService.newShoppingCart.subscribe(() => {
+    //   this.newSingleShoppingCart =
+    //     this.userService.singleUserFetchShoppingCart;
+    //   console.log(this.newSingleShoppingCart);
+    // });
 
-      if (localStorage.getItem('totalItemsX')) {
-        this.amount2 = localStorage.getItem('totalItemsX');
-        this.amountItems = JSON.parse(this.amount2);
-      }
-      this.shopService.newAmountItems.subscribe(() => {
-        this.amountItems = this.shopService.totalItemsX;
-      });
+    //carrello aggiornato del singolo user dal DB
+    // this.shoppingCart2 = storeServ.showCart();
+    // console.log(this.shoppingCart2);
 
-      if (localStorage.getItem('totalMoneyX')) {
-        this.amountM2 = localStorage.getItem('totalMoneyX');
-        this.amountMoney = JSON.parse(this.amountM2);
-      }
-      this.shopService.newAmountMoney.subscribe(() => {
-        this.amountMoney = this.shopService.cartTotalX;
-      });
-      // this.newSingleShoppingCart = shopService.cart;
-      // this.amountItems = this.shopService.totalItemsX;
-      // this.amountMoney = this.shopService.cartTotalX.toFixed(2);
+    if (localStorage.getItem('totalItemsX')) {
+      this.amount2 = localStorage.getItem('totalItemsX');
+      this.amountItems = JSON.parse(this.amount2);
     }
+    this.shopService.newAmountItems.subscribe(() => {
+      this.amountItems = this.shopService.totalItemsX;
+    });
+
+    if (localStorage.getItem('totalMoneyX')) {
+      this.amountM2 = localStorage.getItem('totalMoneyX');
+      this.amountMoney = JSON.parse(this.amountM2);
+    }
+    this.shopService.newAmountMoney.subscribe(() => {
+      this.amountMoney = this.shopService.cartTotalX;
+    });
+    // this.newSingleShoppingCart = shopService.cart;
+    // this.amountItems = this.shopService.totalItemsX;
+    // this.amountMoney = this.shopService.cartTotalX.toFixed(2);
   }
+  // }
   ngOnInit(): void {
     this.shopService.newCart.subscribe(() => {
       this.newSingleShoppingCart = this.shopService.cart;

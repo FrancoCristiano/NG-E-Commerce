@@ -1,4 +1,4 @@
-<div class="container alert-container flex-row align-center">
+<div *ngIf="isOn" class="container alert-container flex-row align-center">
   <div
     *ngIf="alert?.alertShow"
     class="alert"

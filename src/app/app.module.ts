@@ -33,6 +33,7 @@ import { AlertComponent } from './alert/alert.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ItemSingleByIdComponent } from './item-single-by-id/item-single-by-id.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { WorkWithUsComponent } from './work-with-us/work-with-us.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     ProductDetailsComponent,
     ItemSingleByIdComponent,
     PageNotFoundComponent,
+    WorkWithUsComponent,
   ],
   imports: [
     HttpClientModule,
