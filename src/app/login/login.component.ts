@@ -23,6 +23,9 @@ export class LoginComponent implements OnInit {
     private userService: UsersService,
     private shopService: ShoppingServiceDBService
   ) {
+    if (localStorage.getItem('userLogged')) {
+      this.alreadyLogged = true;
+    }
     this.userService.fetchData();
     this.cart = this.userService.singleUserFetchShoppingCart;
     this.userService.newShoppingCart.subscribe(() => {
@@ -35,7 +38,7 @@ export class LoginComponent implements OnInit {
     console.log(this.alreadyLogged);
     console.log(this.userService.isUserMatched);
 
-    this.alreadyLogged = this.userService.isUserMatched;
+    // this.alreadyLogged = this.userService.isUserMatched;
     this.userService.newUsersList.subscribe(() => {
       this.usersListFull = this.userService.getUsersList();
 
