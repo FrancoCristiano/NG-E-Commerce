@@ -58,10 +58,19 @@ form {
     padding-bottom: 30vh;
     /* margin-bottom: 30vh; */
   }
+  form {
+    width: 75vw;
+  }
+  img {
+    width: 60vw;
+  }
 }
 
 @media screen and (min-width: 500px) and (max-width: 650px) {
   .container-standard {
     padding-bottom: 40vh;
+  }
+  img {
+    width: 50vw;
   }
 }
